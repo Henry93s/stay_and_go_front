@@ -5,7 +5,9 @@ export const findIDUser = async (name: string, phone: string) => {
         const res = await axios.post('/users/findid',{
             name: name,
             phone: phone
-        });
+        }, {
+            withCredentials: true
+          });
         return res;
     } catch (e) {
         alert(e.response?.data?.message);

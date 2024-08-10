@@ -5,6 +5,8 @@ export async function sendEmailCertification(email: string) {
   try {
     const response = await axios.post("http://localhost:3000/users/verify", {
       email,
+    }, {
+      withCredentials: true
     });
 
     if (response.status === 200) {
@@ -27,6 +29,8 @@ export async function certificationCode(email: string, code: string) {
       {
         email,
         code,
+      }, {
+        withCredentials: true
       }
     );
 
