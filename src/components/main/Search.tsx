@@ -383,6 +383,7 @@ const Search : React.FC <SearchProps> = ({setPage, search, setSearch, startSearc
             alert("성인 1명 이상 지정 후 조회 및 예약할 수 있습니다.");
             return;
         } else {
+            document.body.style.overflow = 'hidden';
             setIsModal(false);
             window.scrollTo({
                 top: 0,
