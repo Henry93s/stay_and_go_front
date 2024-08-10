@@ -15,6 +15,7 @@ import { getNextNextDate } from "../../util/getNextNextDate";
 import { optionType, PageType, SearchProps, AdultProps, SearchType } from "../../model/main(with detail, upload)/mainTypes";
 import styles from './DatePicker.module.css';
 import classNames from 'classnames';
+import { motion } from 'framer-motion';
 
 const Container = styled.div`
     width: 100%;
@@ -70,7 +71,7 @@ const ModalOverlay = styled.div`
     width: 100%;
     height: 100%;
     overflow-y: none;
-    z-index: 101;
+    z-index: 103;
 `
 // 모달 컨테이너 div
 const ModalContainer = styled.div`
@@ -181,11 +182,9 @@ const ModalContentBigger2 = styled(ModalContentBigger)`
 const ModalFooter = styled.div`
     position: fixed;
     bottom: 0;
-    // mainFooter height 60px
-    padding-bottom: 60px;
     margin-top: 10px;
     width: 100%;
-    height: 15%;
+    height: 8vh;
     background-color: white;
 
     // 보은 반응형 요청
@@ -343,10 +342,14 @@ const Search : React.FC <SearchProps> = ({setPage, search, setSearch, startSearc
 
     // 클릭 시 모달 활성화
     const onClickModal = () : void => {
+        // 모달 동안 스크롤 동작 x
+        document.body.style.overflow = 'hidden';
         setIsModal(true);
     };
     // x 버튼 클릭 시 모달 비활성화
     const onClickModalClose = () => {
+        // 모달 끝나고 스크롤 동작 on
+        document.body.style.overflow = 'initial';
         setIsModal(false);
     };
     // 지역 셀렉트 박스 이벤트 핸들러
