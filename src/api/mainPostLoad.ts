@@ -9,7 +9,7 @@ class MainPostLoad {
                 category,
                 mymode
             }, {
-                withCredentials: true
+                
               });
             return res.data.result;
         }

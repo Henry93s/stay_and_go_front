@@ -101,7 +101,7 @@ const Findpassword: React.FC = () => {
   const onEmailCheckHandler = async (e:  FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:3001/users/verify/confirm', {email, secret: code});
+      const res = await axios.post<{code: number, message: string}>('/users/verify/confirm', {email, secret: code});
       console.log(res);
       if(res.data.code === 200){
         navigate("/changePassword", {state: {email} });

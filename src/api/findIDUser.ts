@@ -6,7 +6,7 @@ export const findIDUser = async (name: string, phone: string) => {
             name: name,
             phone: phone
         }, {
-            withCredentials: true
+            
           });
         return res;
     } catch (e) {

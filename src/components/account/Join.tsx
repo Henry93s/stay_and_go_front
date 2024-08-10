@@ -184,7 +184,7 @@ const Join: React.FC = () => {
       const response = await axios.post("/users/verify", {
         email: userInfo.email,
       }, {
-        withCredentials: true
+        
       });
       if(response.data.code == 200) {
         if ( emailRequestBtn.current && emailCodeInput.current) {
@@ -211,7 +211,7 @@ const Join: React.FC = () => {
           secret: userInfo.code,
         }
         , {
-          withCredentials: true
+          
         });
       // 이메일 인증 요청 시 버튼 비활성화
       if (emailOkBtn.current && emailCodeInput.current) {
