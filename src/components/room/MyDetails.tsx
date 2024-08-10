@@ -17,7 +17,7 @@ const SwiperDiv = styled.div`
   position: relative;
   background: #eee;
   height: 110vw;
-
+  max-height: 700px;
   & .swiper {
     height: 100%;
   }
@@ -113,6 +113,7 @@ const Location = styled.div`
   overflow: hidden;
   background: #eee;
   height: 60vw;
+  max-height: 400px;
 `;
 
 const LocationText = styled.div`
@@ -290,7 +291,7 @@ const RoomMyDetails = () => {
           style={customStyle}
         >
             <SwiperSlide key={`slide0`}>
-              <ImgDiv><img src={query.get('main_image')}></img></ImgDiv>
+              <ImgDiv><img src={roomInfo.main_image}></img></ImgDiv>
             </SwiperSlide>
           {roomInfo.sub_images.length > 0 &&
           roomInfo.sub_images.map((img, i)=>{
@@ -304,12 +305,12 @@ const RoomMyDetails = () => {
       </SwiperDiv>
 
       <Container>
-        <Title>[{query.get('title')}]</Title>
+        <Title>[{roomInfo.title}]</Title>
         <InfoText>
-        {Number(query.get('price')).toLocaleString()}원 / {query.get('main_location')}
+        {roomInfo.price.toLocaleString()}원 / {roomInfo.main_location}
           <br />
-          최대 인원 {query.get('max_adult') + query.get('max_baby') + query.get('max_child')}명 * 
-          침실 {query.get('room_num')}개
+          최대 인원 {roomInfo.max_adult + roomInfo.max_baby + roomInfo.max_child}명 * 
+          침실 {roomInfo.room_num}개
         </InfoText>
         <MainOptionBox>
           {roomInfo.category.length > 0 && 
@@ -337,7 +338,7 @@ const RoomMyDetails = () => {
             onClick={()=>setSlideModal(prev => ({
               isOpen: true,
               title: '숙소 소개',
-              text: query.get('contents'),
+              text: roomInfo.contents,
             }))}
           >
             더보기 &gt;
@@ -349,21 +350,21 @@ const RoomMyDetails = () => {
           <Location>
             <KakaoMap moveup={-1} address={roomInfo.sub_location} title={roomInfo.title} />
           </Location>
-          <LocationText>{query.get('sub_location')}</LocationText>
+          <LocationText>{roomInfo.sub_location}</LocationText>
         </LocationDiv>
 
         <HostInfoDiv>
           <p>호스트 소개</p>
           <HostInfoBox>
-            <HostImg>{roomInfo.author?.photo}</HostImg>
+            <HostImg>{roomInfo.author.photo}</HostImg>
             <div>
-              <HostName>{roomInfo.author?.nickname}({roomInfo.author?.name})</HostName>
+              <HostName>{roomInfo.author.nickname}({roomInfo.author.name})</HostName>
               <p>{roomInfo.author.email}</p>
               <HostPhone href={`tel:${roomInfo.author?.phone}`}>
                 <svg xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="0 -960 960 960" width="18px" fill="#333">
                   <path d="M798-120q-125 0-247-54.5T329-329Q229-429 174.5-551T120-798q0-18 12-30t30-12h162q14 0 25 9.5t13 22.5l26 140q2 16-1 27t-11 19l-97 98q20 37 47.5 71.5T387-386q31 31 65 57.5t72 48.5l94-94q9-9 23.5-13.5T670-390l138 28q14 4 23 14.5t9 23.5v162q0 18-12 30t-30 12ZM241-600l66-66-17-94h-89q5 41 14 81t26 79Zm358 358q39 17 79.5 27t81.5 13v-88l-94-19-67 67ZM241-600Zm358 358Z"/>
                 </svg>
-                {roomInfo.author?.phone}
+                {roomInfo.author.phone}
               </HostPhone>
             </div>
           </HostInfoBox>
@@ -377,7 +378,7 @@ const RoomMyDetails = () => {
               onClick={()=>setSlideModal(prev => ({
                 isOpen: true,
                 title: '호스트 소개',
-                text: query.get('host_intro'),
+                text: roomInfo.host_intro,
               }))}
             >
               더보기 &gt;
