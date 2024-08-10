@@ -6,7 +6,7 @@ export const changePWUser = async (email: string, password: string) => {
         email,
         password,
       }, {
-        withCredentials: true
+       
       });
         return res;
     } catch (e) {
