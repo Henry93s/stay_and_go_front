@@ -383,6 +383,9 @@ const Search : React.FC <SearchProps> = ({setPage, search, setSearch, startSearc
             alert("성인 1명 이상 지정 후 조회 및 예약할 수 있습니다.");
             return;
         } else {
+            // overflow : visible(default : 내용이 요소를 넘어도 잘리지 않고 스크롤바도 나타나지 않음)
+            // overflow : auto (영역 초과 시에만 scroll 자동 추가)
+            // overflow : initial (브라우저의 기본 스타일에 맞춤)
             document.body.style.overflow = 'initial';
             setIsModal(false);
             window.scrollTo({
