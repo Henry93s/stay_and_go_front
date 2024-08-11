@@ -207,7 +207,6 @@ const ModalFooter = styled.div`
     }
 `
 const FooterDelSpan = styled.span`
-    width: 60%;
     font-size: 14px;
     text-decoration: underline;
     cursor: pointer;
